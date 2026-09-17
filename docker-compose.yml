@@ -1,0 +1,35 @@
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim-faststart
+    environment:
+      ORACLE_PASSWORD: OracleAdmin123
+      APP_USER: student_app
+      APP_USER_PASSWORD: student_app_password
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+      - ./sql:/container-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  app:
+    build: .
+    depends_on:
+      oracle:
+        condition: service_healthy
+    environment:
+      SECRET_KEY: local-docker-secret-change-me
+      FLASK_DEBUG: "0"
+      DEMO_MODE: "0"
+      DB_USER: student_app
+      DB_PASSWORD: student_app_password
+      DB_DSN: oracle:1521/FREEPDB1
+    ports:
+      - "5000:5000"
+
+volumes:
+  oracle_data:

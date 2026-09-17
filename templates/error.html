@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Ошибка — StudentProgress{% endblock %}
+{% block content %}
+<section class="card narrow error-page">
+    <div class="eyebrow">StudentProgress</div>
+    <h1>Не удалось выполнить операцию</h1>
+    <p class="muted">{{ message }}</p>
+    <div class="form-actions"><a class="button secondary" href="{{ url_for('home') }}">Вернуться</a></div>
+</section>
+{% endblock %}

@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Преподаватель — StudentProgress{% endblock %}{% block content %}
+<div class="page-heading"><div><div class="eyebrow">Преподаватель</div><h1>Обзор</h1><p class="muted">Просмотр студентов и дисциплин, работа с оценками — в журнале успеваемости.</p></div><a class="button primary" href="{{ url_for('grades') }}">Открыть журнал</a></div>
+<div class="grid two"><section class="card"><h2>Студенты</h2><div class="simple-list">{% for s in students %}<div><strong>{{ s.last_name }} {{ s.first_name }}</strong><span>{{ s.group_name }}</span></div>{% endfor %}</div></section>
+<section class="card"><h2>Дисциплины</h2><div class="simple-list">{% for d in disciplines %}<div><strong>{{ d.name }}</strong></div>{% endfor %}</div></section></div>{% endblock %}

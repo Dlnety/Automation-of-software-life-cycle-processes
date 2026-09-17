@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Изменить студента — StudentProgress{% endblock %}{% block content %}
+<div class="page-heading"><div><div class="eyebrow">Студенты</div><h1>Изменить данные</h1></div></div>
+<section class="card narrow"><form method="post" class="form-stack">
+<label>Фамилия <span class="required">*</span><input name="last_name" value="{{ student.last_name }}" required></label>
+<label>Имя <span class="required">*</span><input name="first_name" value="{{ student.first_name }}" required></label>
+<label>Отчество<input name="middle_name" value="{{ student.middle_name or '' }}"></label>
+<label>Год поступления <span class="required">*</span><input name="year" type="number" value="{{ student.year }}" min="2000" max="2100" required></label>
+<label>Форма обучения <span class="required">*</span><select name="form">{% for x in study_forms %}<option value="{{ x }}" {% if x==student.form %}selected{% endif %}>{{ x }}</option>{% endfor %}</select></label>
+<label>Группа <span class="required">*</span><select name="group_id">{% for g in groups %}<option value="{{ g.id }}" {% if g.id==student.group_id %}selected{% endif %}>{{ g.name }} — {{ g.specialty }}</option>{% endfor %}</select></label>
+<div class="form-actions"><a class="button ghost" href="{{ url_for('students') }}">Отмена</a><button class="button primary" type="submit">Сохранить</button></div>
+</form></section>{% endblock %}

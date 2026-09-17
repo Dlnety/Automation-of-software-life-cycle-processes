@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Студенты — StudentProgress{% endblock %}
+{% block content %}
+<div class="page-heading"><div><div class="eyebrow">Учебный отдел</div><h1>Студенты</h1></div></div>
+<section class="card">
+<h2>Добавить студента</h2>
+<form method="post" class="form-grid">
+    <label>Фамилия <span class="required">*</span><input name="last_name" required></label>
+    <label>Имя <span class="required">*</span><input name="first_name" required></label>
+    <label>Отчество<input name="middle_name"></label>
+    <label>Год поступления <span class="required">*</span><input name="year" type="number" min="2000" max="2100" required></label>
+    <label>Форма обучения <span class="required">*</span><select name="form" required>{% for x in study_forms %}<option value="{{ x }}">{{ x }}</option>{% endfor %}</select></label>
+    <label>Группа <span class="required">*</span><select name="group_id" required>{% for g in groups %}<option value="{{ g.id }}">{{ g.name }} — {{ g.specialty }}</option>{% endfor %}</select></label>
+    <div class="form-actions"><button class="button primary" type="submit">Добавить</button></div>
+</form>
+</section>
+<section class="card">
+<h2>Контингент</h2>
+<div class="table-wrap"><table><thead><tr><th>ФИО</th><th>Год</th><th>Форма</th><th>Группа</th><th></th></tr></thead><tbody>
+{% for s in students %}<tr><td>{{ s.last_name }} {{ s.first_name }} {{ s.middle_name or '' }}</td><td>{{ s.year }}</td><td>{{ s.form }}</td><td>{{ s.group_name }}</td><td><a class="table-link" href="{{ url_for('edit_student', student_id=s.id) }}">Изменить</a></td></tr>{% endfor %}
+</tbody></table></div>
+</section>
+{% endblock %}

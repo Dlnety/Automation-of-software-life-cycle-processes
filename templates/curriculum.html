@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Учебный план — StudentProgress{% endblock %}{% block content %}
+<div class="page-heading"><div><div class="eyebrow">Учебный отдел</div><h1>Учебный план</h1></div></div>
+<section class="card"><h2>Добавить элемент</h2><form method="post" class="form-grid">
+<label>Специальность <span class="required">*</span><select name="specialty_id">{% for s in specialties %}<option value="{{ s.id }}">{{ s.code }} — {{ s.name }}</option>{% endfor %}</select></label>
+<label>Дисциплина <span class="required">*</span><select name="discipline_id">{% for d in disciplines %}<option value="{{ d.id }}">{{ d.name }}</option>{% endfor %}</select></label>
+<label>Семестр <span class="required">*</span><input name="semester" type="number" min="1" max="12" required></label>
+<label>Количество часов <span class="required">*</span><input name="hours" type="number" min="1" required></label>
+<label>Форма отчётности <span class="required">*</span><select name="report_type">{% for x in report_types %}<option value="{{ x }}">{{ x }}</option>{% endfor %}</select></label>
+<div class="form-actions"><button class="button primary" type="submit">Добавить</button></div></form></section>
+<section class="card"><h2>Текущий учебный план</h2><div class="table-wrap"><table><thead><tr><th>Специальность</th><th>Дисциплина</th><th>Семестр</th><th>Часы</th><th>Отчётность</th><th></th></tr></thead><tbody>
+{% for c in curriculum %}<tr><td>{{ c.specialty }}</td><td>{{ c.discipline }}</td><td>{{ c.semester }}</td><td>{{ c.hours }}</td><td>{{ c.report_type }}</td><td><a class="table-link" href="{{ url_for('edit_curriculum', curriculum_id=c.id) }}">Изменить</a></td></tr>{% endfor %}
+</tbody></table></div></section>{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Вход — StudentProgress{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+    <section class="card auth-card">
+        <div class="eyebrow">Учёт успеваемости</div>
+        <h1>Добро пожаловать</h1>
+        <p class="muted">Войдите в рабочее пространство StudentProgress.</p>
+        <form method="post" class="form-stack">
+            <label>Логин <span class="required">*</span>
+                <input name="username" autocomplete="username" required>
+            </label>
+            <label>Пароль <span class="required">*</span>
+                <input name="password" type="password" autocomplete="current-password" required>
+            </label>
+            <button class="button primary" type="submit">Войти</button>
+        </form>
+        <div class="demo-box">
+            <strong>Демо-доступ</strong>
+            <span>Учебный отдел: <code>study / study123</code></span>
+            <span>Преподаватель: <code>teacher / teacher123</code></span>
+        </div>
+    </section>
+</div>
+{% endblock %}

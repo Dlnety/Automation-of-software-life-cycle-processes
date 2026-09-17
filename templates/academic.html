@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Учебный отдел — StudentProgress{% endblock %}
+{% block content %}
+<div class="page-heading"><div><div class="eyebrow">Учебный отдел</div><h1>Обзор</h1></div></div>
+<div class="grid two">
+<section class="card">
+    <h2>Студенты по форме обучения</h2>
+    <form method="post" class="form-inline">
+        <label class="grow">Форма обучения
+            <select name="study_form">
+                {% for form in ['очная','очно-заочная','заочная'] %}
+                <option value="{{ form }}" {% if selected_form == form %}selected{% endif %}>{{ form }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button class="button primary" type="submit">Посчитать</button>
+    </form>
+    <div class="metric"><span>{{ count }}</span><small>студентов</small></div>
+</section>
+<section class="card">
+    <h2>Сведения по дисциплине</h2>
+    <form method="post" class="form-stack compact">
+        <label>Название дисциплины
+            <input name="discipline_name" value="{{ discipline_name }}" placeholder="Например, Базы данных">
+        </label>
+        <button class="button secondary" type="submit">Найти</button>
+    </form>
+    {% if discipline %}
+    <dl class="details">
+        <div><dt>Специальность</dt><dd>{{ discipline.specialty }}</dd></div>
+        <div><dt>Семестр</dt><dd>{{ discipline.semester }}</dd></div>
+        <div><dt>Часы</dt><dd>{{ discipline.hours }}</dd></div>
+        <div><dt>Форма отчётности</dt><dd>{{ discipline.report_type }}</dd></div>
+    </dl>
+    {% endif %}
+</section>
+</div>
+{% endblock %}

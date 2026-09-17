@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Изменить оценку — StudentProgress{% endblock %}{% block content %}
+<div class="page-heading"><div><div class="eyebrow">Журнал успеваемости</div><h1>Изменить оценку</h1></div></div><section class="card narrow">
+<div class="details single"><div><dt>Студент</dt><dd>{{ item.student }}</dd></div><div><dt>Дисциплина</dt><dd>{{ item.discipline }}</dd></div><div><dt>Период</dt><dd>{{ item.period }}</dd></div></div>
+<form method="post" class="form-stack"><label>Оценка <span class="required">*</span><select name="grade">{% for x in ['5','4','3','2','зачет','незачет'] %}<option value="{{ x }}" {% if x==item.grade %}selected{% endif %}>{{ x }}</option>{% endfor %}</select></label><div class="form-actions"><a class="button ghost" href="{{ url_for('grades') }}">Отмена</a><button class="button primary" type="submit">Сохранить</button></div></form></section>{% endblock %}
