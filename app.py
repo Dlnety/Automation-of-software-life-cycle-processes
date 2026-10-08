@@ -42,6 +42,12 @@ def home():
         return redirect(url_for("login"))
     return redirect(url_for("academic_dashboard" if session.get("role") == "academic" else "teacher_dashboard"))
 
+@app.route("/health")
+def health():
+    return {
+        "service": "StudentProgress",
+        "status": "ok"
+    }, 200
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
