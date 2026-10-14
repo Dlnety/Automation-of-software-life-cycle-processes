@@ -1,3 +1,3 @@
 def demo():
-    return nananablablabla
+    return 1
 
