@@ -46,7 +46,7 @@ def home():
 def health():
     return {
         "service": "StudentProgress",
-        "status": "broken"
+        "status": "ok"
     }, 200
 
 
