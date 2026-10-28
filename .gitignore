@@ -1,1 +1,7 @@
 analysis-reports/
+test-reports/
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+.venv-lr7/
