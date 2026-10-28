@@ -1,0 +1,100 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.3.5, pluggy-1.7.0 -- /workspace/scratch/a9dcc1b59202/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/scratch/a9dcc1b59202/work/Automation-of-software-life-cycle-processes-dev
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-6.0.0
+collecting ... collected 78 items
+
+tests/integration/test_web.py::test_health PASSED                        [  1%]
+tests/integration/test_web.py::test_anonymous_redirect[/] PASSED         [  2%]
+tests/integration/test_web.py::test_anonymous_redirect[/academic] PASSED [  3%]
+tests/integration/test_web.py::test_anonymous_redirect[/academic/students] PASSED [  5%]
+tests/integration/test_web.py::test_anonymous_redirect[/academic/students/1/edit] PASSED [  6%]
+tests/integration/test_web.py::test_anonymous_redirect[/academic/curriculum] PASSED [  7%]
+tests/integration/test_web.py::test_anonymous_redirect[/academic/curriculum/1/edit] PASSED [  8%]
+tests/integration/test_web.py::test_anonymous_redirect[/teacher] PASSED  [ 10%]
+tests/integration/test_web.py::test_anonymous_redirect[/teacher/grades] PASSED [ 11%]
+tests/integration/test_web.py::test_anonymous_redirect[/teacher/grades/1/edit] PASSED [ 12%]
+tests/integration/test_web.py::test_login_roles[study-study123-academic-/academic] PASSED [ 14%]
+tests/integration/test_web.py::test_login_roles[teacher-teacher123-teacher-/teacher] PASSED [ 15%]
+tests/integration/test_web.py::test_bad_login[study-wrong] PASSED        [ 16%]
+tests/integration/test_web.py::test_bad_login[unknown-study123] PASSED   [ 17%]
+tests/integration/test_web.py::test_bad_login[-] PASSED                  [ 19%]
+tests/integration/test_web.py::test_logout PASSED                        [ 20%]
+tests/integration/test_web.py::test_wrong_role_post[teacher-teacher123-/academic/students] PASSED [ 21%]
+tests/integration/test_web.py::test_wrong_role_post[teacher-teacher123-/academic/students/1/edit] PASSED [ 23%]
+tests/integration/test_web.py::test_wrong_role_post[teacher-teacher123-/academic/curriculum] PASSED [ 24%]
+tests/integration/test_web.py::test_wrong_role_post[teacher-teacher123-/academic/curriculum/1/edit] PASSED [ 25%]
+tests/integration/test_web.py::test_wrong_role_post[study-study123-/teacher/grades] PASSED [ 26%]
+tests/integration/test_web.py::test_wrong_role_post[study-study123-/teacher/grades/1/edit] PASSED [ 28%]
+tests/integration/test_web.py::test_academic_search PASSED               [ 29%]
+tests/integration/test_web.py::test_discipline_missing PASSED            [ 30%]
+tests/integration/test_web.py::test_student_create_edit PASSED           [ 32%]
+tests/integration/test_web.py::test_student_invalid_http PASSED          [ 33%]
+tests/integration/test_web.py::test_curriculum_create_edit PASSED        [ 34%]
+tests/integration/test_web.py::test_duplicate_curriculum PASSED          [ 35%]
+tests/integration/test_web.py::test_grade_create_edit PASSED             [ 37%]
+tests/integration/test_web.py::test_duplicate_grade PASSED               [ 38%]
+tests/integration/test_web.py::test_invalid_grade_http PASSED            [ 39%]
+tests/integration/test_web.py::test_missing_record[study-study123-/academic/students/999/edit-/academic/students-\u0421\u0442\u0443\u0434\u0435\u043d\u0442 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d] PASSED [ 41%]
+tests/integration/test_web.py::test_missing_record[study-study123-/academic/curriculum/999/edit-/academic/curriculum-\u042d\u043b\u0435\u043c\u0435\u043d\u0442 \u0443\u0447\u0435\u0431\u043d\u043e\u0433\u043e \u043f\u043b\u0430\u043d\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d] PASSED [ 42%]
+tests/integration/test_web.py::test_missing_record[teacher-teacher123-/teacher/grades/999/edit-/teacher/grades-\u0417\u0430\u043f\u0438\u0441\u044c \u0436\u0443\u0440\u043d\u0430\u043b\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u0430] PASSED [ 43%]
+tests/unit/test_transactions.py::test_add_student_transaction[False] PASSED [ 44%]
+tests/unit/test_transactions.py::test_add_student_transaction[True] PASSED [ 46%]
+tests/unit/test_validation.py::test_password_correct_and_wrong PASSED    [ 47%]
+tests/unit/test_validation.py::test_password_malformed[] PASSED          [ 48%]
+tests/unit/test_validation.py::test_password_malformed[broken] PASSED    [ 50%]
+tests/unit/test_validation.py::test_password_malformed[sha1$1000$aa$bb] PASSED [ 51%]
+tests/unit/test_validation.py::test_password_malformed[pbkdf2_sha256$abc$aa$bb] PASSED [ 52%]
+tests/unit/test_validation.py::test_password_malformed[pbkdf2_sha256$1000$zz$bb] PASSED [ 53%]
+tests/unit/test_validation.py::test_password_malformed[pbkdf2_sha256$0$aa$bb] PASSED [ 55%]
+tests/unit/test_validation.py::test_next_id[rows0-1] PASSED              [ 56%]
+tests/unit/test_validation.py::test_next_id[rows1-8] PASSED              [ 57%]
+tests/unit/test_validation.py::test_full_name[\u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447-\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447] PASSED [ 58%]
+tests/unit/test_validation.py::test_full_name[-\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d] PASSED [ 60%]
+tests/unit/test_validation.py::test_full_name[None-\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d] PASSED [ 61%]
+tests/unit/test_validation.py::test_curriculum_invalid[semester-0-\u0421\u0435\u043c\u0435\u0441\u0442\u0440] PASSED [ 62%]
+tests/unit/test_validation.py::test_curriculum_invalid[semester-13-\u0421\u0435\u043c\u0435\u0441\u0442\u0440] PASSED [ 64%]
+tests/unit/test_validation.py::test_curriculum_invalid[hours-0-\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0430\u0441\u043e\u0432] PASSED [ 65%]
+tests/unit/test_validation.py::test_curriculum_invalid[hours--1-\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0430\u0441\u043e\u0432] PASSED [ 66%]
+tests/unit/test_validation.py::test_curriculum_invalid[report_type-\u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c\u043d\u0430\u044f-\u0444\u043e\u0440\u043c\u0430 \u043e\u0442\u0447\u0451\u0442\u043d\u043e\u0441\u0442\u0438] PASSED [ 67%]
+tests/unit/test_validation.py::test_curriculum_boundaries[1] PASSED      [ 69%]
+tests/unit/test_validation.py::test_curriculum_boundaries[12] PASSED     [ 70%]
+tests/unit/test_validation.py::test_invalid_student_no_write[form-\u0434\u0438\u0441\u0442\u0430\u043d\u0446\u0438\u043e\u043d\u043d\u0430\u044f-\u0444\u043e\u0440\u043c\u0430 \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f] PASSED [ 71%]
+tests/unit/test_validation.py::test_invalid_student_no_write[year-1999-\u0413\u043e\u0434 \u043f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u044f] PASSED [ 73%]
+tests/unit/test_validation.py::test_invalid_student_no_write[year-2101-\u0413\u043e\u0434 \u043f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u044f] PASSED [ 74%]
+tests/unit/test_validation.py::test_invalid_student_no_write[group_id-999-\u0433\u0440\u0443\u043f\u043f\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u0430] PASSED [ 75%]
+tests/unit/test_validation.py::test_count_students[\u043e\u0447\u043d\u0430\u044f-2] PASSED [ 76%]
+tests/unit/test_validation.py::test_count_students[\u043e\u0447\u043d\u043e-\u0437\u0430\u043e\u0447\u043d\u0430\u044f-1] PASSED [ 78%]
+tests/unit/test_validation.py::test_count_students[\u0437\u0430\u043e\u0447\u043d\u0430\u044f-0] PASSED [ 79%]
+tests/unit/test_validation.py::test_count_rejects_unknown_form PASSED    [ 80%]
+tests/unit/test_validation.py::test_valid_grade[1-1-2] PASSED            [ 82%]
+tests/unit/test_validation.py::test_valid_grade[1-1-5] PASSED            [ 83%]
+tests/unit/test_validation.py::test_valid_grade[2-1-\u0437\u0430\u0447\u0435\u0442] PASSED [ 84%]
+tests/unit/test_validation.py::test_valid_grade[2-1-\u043d\u0435\u0437\u0430\u0447\u0435\u0442] PASSED [ 85%]
+tests/unit/test_validation.py::test_invalid_grade[1-1-1] PASSED          [ 87%]
+tests/unit/test_validation.py::test_invalid_grade[1-1-6] PASSED          [ 88%]
+tests/unit/test_validation.py::test_invalid_grade[1-1-\u0437\u0430\u0447\u0435\u0442] PASSED [ 89%]
+tests/unit/test_validation.py::test_invalid_grade[2-1-5] PASSED          [ 91%]
+tests/unit/test_validation.py::test_invalid_grade[999-1-5] PASSED        [ 92%]
+tests/unit/test_validation.py::test_invalid_grade[1-999-5] PASSED        [ 93%]
+tests/unit/test_validation.py::test_friendly_error[ORA-20001: \u0414\u0438\u0441\u0446\u0438\u043f\u043b\u0438\u043d\u0430 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442\nORA-06512: details-\u0414\u0438\u0441\u0446\u0438\u043f\u043b\u0438\u043d\u0430 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442] PASSED [ 94%]
+tests/unit/test_validation.py::test_friendly_error[ORA-00001: details-\u0422\u0430\u043a\u0430\u044f \u0437\u0430\u043f\u0438\u0441\u044c \u0443\u0436\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442.] PASSED [ 96%]
+tests/unit/test_validation.py::test_friendly_error[ORA-02291: details-\u041d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0439 \u043e\u0431\u044a\u0435\u043a\u0442. \u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0432\u044b\u0431\u0440\u0430\u043d\u043d\u044b\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f.] PASSED [ 97%]
+tests/unit/test_validation.py::test_friendly_error[ORA-02290: details-\u041e\u0434\u043d\u043e \u0438\u0437 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0439 \u043d\u0435 \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u0435\u0442 \u0434\u043e\u043f\u0443\u0441\u0442\u0438\u043c\u044b\u043c \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f\u043c.] PASSED [ 98%]
+tests/unit/test_validation.py::test_friendly_error[internal connection info-\u041e\u043f\u0435\u0440\u0430\u0446\u0438\u044e \u0432\u044b\u043f\u043e\u043b\u043d\u0438\u0442\u044c \u043d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c. \u041f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u0432\u0432\u0435\u0434\u0451\u043d\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435.] PASSED [100%]
+
+- generated xml file: /workspace/scratch/a9dcc1b59202/work/Automation-of-software-life-cycle-processes-dev/test-reports/all/junit.xml -
+
+---------- coverage: platform linux, python 3.12.14-final-0 ----------
+Name     Stmts   Miss  Cover   Missing
+--------------------------------------
+app.py     167     21    87%   32-36, 59-61, 86-88, 120-121, 153-154, 191-192, 198-199, 204-205, 209
+db.py      262     88    66%   38-46, 110-120, 126-128, 134-140, 146-148, 154-161, 174-176, 185-196, 230, 235, 240-249, 255-264, 295-302, 316-323, 329-339, 369-376, 387-394
+--------------------------------------
+TOTAL      429    109    75%
+Coverage XML written to file test-reports/all/coverage.xml
+
+============================== 78 passed in 1.27s ==============================
