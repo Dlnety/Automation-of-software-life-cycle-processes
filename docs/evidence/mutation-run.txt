@@ -1,0 +1,35 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.3.5, pluggy-1.7.0 -- /workspace/scratch/a9dcc1b59202/mutation-check/../.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/scratch/a9dcc1b59202/mutation-check
+configfile: pytest.ini
+plugins: cov-6.0.0
+collecting ... collected 1 item
+
+tests/integration/test_web.py::test_health FAILED                        [100%]
+
+=================================== FAILURES ===================================
+_________________________________ test_health __________________________________
+
+client = <FlaskClient <Flask 'app'>>
+
+    def test_health(client):
+        """/health доступен без входа и возвращает контракт HTTP 200 + JSON."""
+        response = client.get("/health")
+        assert response.status_code == 200
+>       assert response.get_json() == {"service": "StudentProgress", "status": "ok"}
+E       AssertionError: assert {'service': '...us': 'broken'} == {'service': '...status': 'ok'}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'status': 'broken'} != {'status': 'ok'}
+E         
+E         Full diff:
+E           {...
+E         
+E         ...Full output truncated (5 lines hidden), use '-vv' to show
+
+tests/integration/test_web.py:15: AssertionError
+=========================== short test summary info ============================
+FAILED tests/integration/test_web.py::test_health - AssertionError: assert {'...
+============================== 1 failed in 0.07s ===============================
