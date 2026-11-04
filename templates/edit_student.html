@@ -7,5 +7,6 @@
 <label>Год поступления <span class="required">*</span><input name="year" type="number" value="{{ student.year }}" min="2000" max="2100" required></label>
 <label>Форма обучения <span class="required">*</span><select name="form">{% for x in study_forms %}<option value="{{ x }}" {% if x==student.form %}selected{% endif %}>{{ x }}</option>{% endfor %}</select></label>
 <label>Группа <span class="required">*</span><select name="group_id">{% for g in groups %}<option value="{{ g.id }}" {% if g.id==student.group_id %}selected{% endif %}>{{ g.name }} — {{ g.specialty }}</option>{% endfor %}</select></label>
+<label>Примечание<input name="note" maxlength="200" value="{{ student.note or '' }}"></label>
 <div class="form-actions"><a class="button ghost" href="{{ url_for('students') }}">Отмена</a><button class="button primary" type="submit">Сохранить</button></div>
 </form></section>{% endblock %}

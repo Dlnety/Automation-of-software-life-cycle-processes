@@ -4,7 +4,7 @@ CREATE OR REPLACE PACKAGE STUDENT_PROGRESS_PKG AS
     FUNCTION count_students_by_form(p_form IN VARCHAR2) RETURN NUMBER;
     PROCEDURE get_discipline_info(p_discipline IN VARCHAR2, p_hours OUT NUMBER, p_semester OUT NUMBER, p_specialty OUT VARCHAR2, p_report_type OUT VARCHAR2);
     PROCEDURE add_student(p_last_name IN VARCHAR2, p_first_name IN VARCHAR2, p_middle_name IN VARCHAR2, p_admission_year IN NUMBER, p_study_form IN VARCHAR2, p_group_id IN NUMBER);
-    PROCEDURE update_student(p_student_id IN NUMBER, p_last_name IN VARCHAR2, p_first_name IN VARCHAR2, p_middle_name IN VARCHAR2, p_admission_year IN NUMBER, p_study_form IN VARCHAR2, p_group_id IN NUMBER);
+    PROCEDURE update_student(p_student_id IN NUMBER, p_last_name IN VARCHAR2, p_first_name IN VARCHAR2, p_middle_name IN VARCHAR2, p_admission_year IN NUMBER, p_study_form IN VARCHAR2, p_group_id IN NUMBER, p_note IN VARCHAR2 DEFAULT NULL);
     PROCEDURE add_curriculum(p_specialty_id IN NUMBER, p_discipline_id IN NUMBER, p_semester IN NUMBER, p_hours IN NUMBER, p_report_type IN VARCHAR2);
     PROCEDURE update_curriculum(p_curriculum_id IN NUMBER, p_specialty_id IN NUMBER, p_discipline_id IN NUMBER, p_semester IN NUMBER, p_hours IN NUMBER, p_report_type IN VARCHAR2);
     PROCEDURE add_grade(p_student_id IN NUMBER, p_discipline_id IN NUMBER, p_study_period IN VARCHAR2, p_grade IN VARCHAR2);
@@ -49,10 +49,10 @@ CREATE OR REPLACE PACKAGE BODY STUDENT_PROGRESS_PKG AS
         VALUES(TRIM(p_last_name), TRIM(p_first_name), TRIM(p_middle_name), p_admission_year, p_study_form, p_group_id);
     END;
 
-    PROCEDURE update_student(p_student_id IN NUMBER, p_last_name IN VARCHAR2, p_first_name IN VARCHAR2, p_middle_name IN VARCHAR2, p_admission_year IN NUMBER, p_study_form IN VARCHAR2, p_group_id IN NUMBER) IS
+    PROCEDURE update_student(p_student_id IN NUMBER, p_last_name IN VARCHAR2, p_first_name IN VARCHAR2, p_middle_name IN VARCHAR2, p_admission_year IN NUMBER, p_study_form IN VARCHAR2, p_group_id IN NUMBER, p_note IN VARCHAR2 DEFAULT NULL) IS
     BEGIN
         validate_study_form(p_study_form);
-        UPDATE students SET last_name=TRIM(p_last_name), first_name=TRIM(p_first_name), middle_name=TRIM(p_middle_name), admission_year=p_admission_year, study_form=p_study_form, group_id=p_group_id
+        UPDATE students SET last_name=TRIM(p_last_name), first_name=TRIM(p_first_name), middle_name=TRIM(p_middle_name), admission_year=p_admission_year, study_form=p_study_form, group_id=p_group_id, note=TRIM(p_note)
         WHERE student_id=p_student_id;
         IF SQL%ROWCOUNT=0 THEN RAISE_APPLICATION_ERROR(-20002, 'Студент не найден'); END IF;
     END;
