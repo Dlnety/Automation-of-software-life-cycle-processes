@@ -114,7 +114,7 @@ def edit_student(student_id):
         flash("Студент не найден.", "error")
         return redirect(url_for("students"))
     if request.method == "POST":
-        data = {k: request.form.get(k, "").strip() for k in ["last_name", "first_name", "middle_name", "year", "form", "group_id"]}
+        data = {k: request.form.get(k, "").strip() for k in ["last_name", "first_name", "middle_name", "year", "form", "group_id", "note"]}
         try:
             db.update_student(student_id, data, session["username"])
             flash("Данные студента изменены.", "success")

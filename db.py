@@ -154,12 +154,12 @@ def list_students():
     with get_connection() as conn, conn.cursor() as cur:
         cur.execute("""
             SELECT s.student_id, s.last_name, s.first_name, s.middle_name,
-                   s.admission_year, s.study_form, s.group_id, g.group_name
+                   s.admission_year, s.study_form, s.group_id, g.group_name, s.note
             FROM students s JOIN study_groups g ON g.group_id = s.group_id
             ORDER BY s.last_name, s.first_name
         """)
         return [{"id": r[0], "last_name": r[1], "first_name": r[2], "middle_name": r[3],
-                 "year": r[4], "form": r[5], "group_id": r[6], "group_name": r[7]} for r in cur]
+                 "year": r[4], "form": r[5], "group_id": r[6], "group_name": r[7], "note": r[8]} for r in cur]
 
 
 def get_student(student_id: int):
@@ -228,6 +228,9 @@ def add_student(data, username):
 def update_student(student_id, data, username):
     if data["form"] not in STUDY_FORMS:
         raise ValueError("Недопустимая форма обучения.")
+    note = (data.get("note") or "").strip()
+    if len(note) > 200:
+        raise ValueError("Примечание должно содержать не более 200 символов.")
     if demo_mode():
         row = next((s for s in DEMO_STUDENTS if s["id"] == int(student_id)), None)
         group = next((g for g in DEMO_GROUPS if g["id"] == int(data["group_id"])), None)
@@ -235,13 +238,14 @@ def update_student(student_id, data, username):
             raise ValueError("Студент или группа не найдены.")
         row.update(last_name=data["last_name"].strip(), first_name=data["first_name"].strip(), middle_name=data.get("middle_name", "").strip(),
                    year=int(data["year"]), form=data["form"], group_id=int(data["group_id"]), group_name=group["name"])
+        row["note"] = note
         DEMO_AUDIT.append({"operation": "UPDATE", "entity": "STUDENTS", "record_id": row["id"], "username": username})
         return
     conn = get_connection(username)
     try:
         with conn.cursor() as cur:
             cur.callproc("STUDENT_PROGRESS_PKG.update_student", [int(student_id), data["last_name"], data["first_name"], data.get("middle_name") or None,
-                                                                  int(data["year"]), data["form"], int(data["group_id"])])
+                                                                  int(data["year"]), data["form"], int(data["group_id"]), note or None])
         conn.commit()
     except Exception:
         conn.rollback(); raise
