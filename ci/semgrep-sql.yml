@@ -1,0 +1,12 @@
+rules:
+  - id: oracle-grant-to-public
+    languages: [generic]
+    severity: ERROR
+    message: "Проверьте выдачу прав всем пользователям через PUBLIC."
+    pattern-regex: '(?i)\bgrant\b[^;]+?\bto\s+public\b'
+
+  - id: oracle-dynamic-sql-concatenation
+    languages: [generic]
+    severity: ERROR
+    message: "Проверьте склеивание строк в EXECUTE IMMEDIATE."
+    pattern-regex: '(?i)\bexecute\s+immediate\b[^;]*\|\|[^;]*;'
